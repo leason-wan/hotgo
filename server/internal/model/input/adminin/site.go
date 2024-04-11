@@ -2,16 +2,18 @@ package adminin
 
 import (
 	"context"
+	"hotgo/utility/simple"
+
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gtime"
-	"hotgo/utility/simple"
 )
 
 // RegisterInp 账号注册
 type RegisterInp struct {
-	Username   string `json:"username" v:"required#用户名不能为空" dc:"用户名"`
-	Password   string `json:"password" v:"required#密码不能为空" dc:"密码"`
-	Mobile     string `json:"mobile" v:"required|phone-loose#手机号不能为空|手机号格式不正确" dc:"手机号"`
+	Username string `json:"username" v:"required#用户名不能为空" dc:"用户名"`
+	Password string `json:"password" v:"required#密码不能为空" dc:"密码"`
+	// Mobile     string `json:"mobile" v:"required|phone-loose#手机号不能为空|手机号格式不正确" dc:"手机号"`
+	Email      string `json:"email" v:"required|email-loose#邮箱不能为空|邮箱格式不正确" dc:"邮箱"`
 	Code       string `json:"code" v:"required#验证码不能为空"  dc:"验证码"`
 	InviteCode string `json:"inviteCode" dc:"邀请码"`
 }
@@ -52,6 +54,12 @@ type AccountLoginInp struct {
 type MobileLoginInp struct {
 	Mobile string `json:"mobile" v:"required|phone-loose#手机号不能为空|手机号格式不正确" dc:"手机号"`
 	Code   string `json:"code" v:"required#验证码不能为空"  dc:"验证码"`
+}
+
+// EmailLoginInp 邮箱登录
+type EmailLoginInp struct {
+	Email string `json:"email" v:"required|email-loose#邮箱不能为空|邮箱格式不正确" dc:"邮箱"`
+	Code  string `json:"code" v:"required#验证码不能为空"  dc:"验证码"`
 }
 
 // MemberLoginPermissions 登录用户角色信息

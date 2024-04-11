@@ -6,9 +6,10 @@
 package common
 
 import (
-	"github.com/gogf/gf/v2/frame/g"
 	"hotgo/internal/model"
 	"hotgo/internal/model/input/adminin"
+
+	"github.com/gogf/gf/v2/frame/g"
 )
 
 // LoginLogoutReq 注销登录
@@ -55,6 +56,16 @@ type MobileLoginReq struct {
 }
 
 type MobileLoginRes struct {
+	*adminin.LoginModel
+}
+
+// EmailLoginReq 提交邮箱登录
+type EmailLoginReq struct {
+	g.Meta `path:"/site/emailLogin" method:"post" tags:"后台基础" summary:"邮箱登录"`
+	adminin.EmailLoginInp
+}
+
+type EmailLoginRes struct {
 	*adminin.LoginModel
 }
 

@@ -7,12 +7,6 @@ package admin
 
 import (
 	"context"
-	"github.com/gogf/gf/v2/crypto/gmd5"
-	"github.com/gogf/gf/v2/database/gdb"
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/os/gtime"
-	"github.com/gogf/gf/v2/util/grand"
 	"hotgo/internal/consts"
 	"hotgo/internal/dao"
 	"hotgo/internal/library/contexts"
@@ -23,6 +17,13 @@ import (
 	"hotgo/internal/model/input/sysin"
 	"hotgo/internal/service"
 	"hotgo/utility/simple"
+
+	"github.com/gogf/gf/v2/crypto/gmd5"
+	"github.com/gogf/gf/v2/database/gdb"
+	"github.com/gogf/gf/v2/errors/gerror"
+	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/os/gtime"
+	"github.com/gogf/gf/v2/util/grand"
 )
 
 type sAdminSite struct{}
@@ -91,7 +92,8 @@ func (s *sAdminSite) Register(ctx context.Context, in *adminin.RegisterInp) (err
 	err = service.AdminMember().VerifyUnique(ctx, &adminin.VerifyUniqueInp{
 		Where: g.Map{
 			dao.AdminMember.Columns().Username: in.Username,
-			dao.AdminMember.Columns().Mobile:   in.Mobile,
+			// dao.AdminMember.Columns().Mobile:   in.Mobile,
+			dao.AdminMember.Columns().Email: in.Email,
 		},
 	})
 	if err != nil {
